@@ -2,9 +2,7 @@
 using AlunosAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AlunosAPI.Controllers
@@ -34,6 +32,24 @@ namespace AlunosAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter");
             }
-        } 
+        }
+
+        [HttpGet("AlunosPorNome")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IAsyncEnumerable<Aluno>>> GetAlunosByNome([FromQuery]string nome)
+        {
+            try
+            {
+                var alunos = await _alunoService.GetAlunosByNome(nome);
+                if (alunos == null)
+                return NotFound($"Não existem alunos com o critério de busca {nome}");
+                return Ok(alunos);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao obter");
+            }
+        }
+
     }
-    }
+}

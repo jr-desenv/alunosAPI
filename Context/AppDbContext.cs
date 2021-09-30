@@ -1,9 +1,5 @@
 ﻿using AlunosAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlunosAPI.Context
 {
@@ -30,6 +26,13 @@ namespace AlunosAPI.Context
                     Nome = "Teste Ribeiro",
                     Email = "teste@email.com",
                     Idade = 20
+                    },
+                    new Aluno
+                    {
+                        Id = 3,
+                        Nome = "Teste Junior",
+                        Email = "juniore@email.com",
+                        Idade = 30
                     }
                 );
         }
